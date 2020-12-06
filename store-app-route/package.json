@@ -1,5 +1,5 @@
 {
-  "name": "@store-singleSPA/root-config",
+  "name": "@Store/root-config",
   "scripts": {
     "start": "webpack-dev-server --mode=development --port 9000 --env.isLocal=true",
     "lint": "eslint src --ext js,ts,tsx",
@@ -9,7 +9,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test && yarn lint-staged && yarn build && pwd && echo $GIT_DIR && git add dist"
+      "pre-commit": "pretty-quick --staged && concurrently yarn:test yarn:lint"
     }
   },
   "devDependencies": {

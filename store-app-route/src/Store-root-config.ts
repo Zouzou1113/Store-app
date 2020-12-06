@@ -8,6 +8,25 @@ import {
 const routes = constructRoutes(
   document.querySelector("#single-spa-layout") as HTMLTemplateElement
 );
+
+registerApplication({
+  name: "@Store/store-app-navbar",
+  app: () => System.import("@Store/store-app-navbar"),
+  activeWhen: ["/"],
+});
+
+registerApplication({
+  name: "@Store/store-app-books",
+  app: () => System.import("@Store/store-app-books"),
+  activeWhen: ["/books"],
+});
+
+registerApplication({
+  name: "@Store/store-app-toys",
+  app: () => System.import("@Store/store-app-toys"),
+  activeWhen: ["/toys"],
+});
+
 const applications = constructApplications({
   routes,
   loadApp({ name }) {

@@ -48,12 +48,27 @@
     {
       "imports": {
         "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
-        "@store-singleSPA/root-config": "//localhost:9000/store-singleSPA-root-config.js"
+        "@Store/root-config": "//localhost:9000/Store-root-config.js"
       }
     }
   </script>
   <% } %>
 
+  <% if (isLocal) { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.development.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.development.js",
+          "@Store/root-config": "http://localhost:9000/Store-root-config.js",
+          "@Store/store-app-navbar": "http://localhost:4000/Store-store-app-navbar.js",
+          "@Store/store-app-books": "http://localhost:4001/Store-store-app-books.js",
+          "@Store/store-app-toys": "http://localhost:4002/Store-store-app-toys.js"
+        }
+      }
+    </script>
+  <% } %>
+  
   <!--
     If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
     Learn more about why at https://single-spa.js.org/docs/ecosystem-angular/#zonejs
@@ -87,7 +102,7 @@
 </head>
 <body>
   <script>
-    System.import('@store-singleSPA/root-config');
+    System.import('@Store/root-config');
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
